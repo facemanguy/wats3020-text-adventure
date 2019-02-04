@@ -3,36 +3,22 @@ let playerName = "";
 let choiceList = [];
 let currentPage = null;
 
-///////////////////////////////////////////////////
-//////// TODOs ///////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-// Fill in the blanks below to complete each TODO task.                       //
-////////////////////////////////////////////////////////////////////////////////
 
-// TODO: Prompt the user for their name. Store the name in the variable `playerName`.
 playerName = window.prompt("what is your name?");
 
 
-// TODO: Create a function called `getCurrentPage()`. It should accept one
-// parameter, which is the `slug` for the current page. This function will fetch
-// the current page and return a page object using the `slug` value for a key.
 function getCurrentPage(slug){
     currentPage = storyData[slug];
     return currentPage;
 }
 
 
-// TODO: Create a function called `recordChoice()` that will accept a `slug`
-// parameter and add it to the `choiceList` Array (probably using `push()`).
 function recordChoice(slug){
     choiceList.push(slug);
     console.log("added to choice array ${slug}");
 }
 
 
-// TODO: Create a function called `undoChoice()` that will remove the last
-// `slug` in the `choiceList` Array and then will return the last `slug` in the
-// `choiceList` Array.
 function undoChoice(){
     choiceList.pop();
     if (choiceList.length === 0){
@@ -43,14 +29,6 @@ function undoChoice(){
 }
 
 
-// TODO: Create a function called `changePage()` that accepts a parameter called
-// `slug` and which handles "turning the page" in three steps:
-//  1. It should call the `recordChoice()` function (and give it the `slug` as
-//     a parameter.
-//  2. It should set the `currentPage` value by calling the `getCurrentPage()`
-//     function (and give it the `slug` as a parameter).
-//  3. It should invoke the `updatePage()` function (and give it the
-//     `currentPage` object as a parameter).
 function changePage(slug){
     recordChoice(slug);
     currentPage = getCurrentPage(slug);
@@ -110,6 +88,9 @@ var storyData = {
             {
                 text: `Go for the cheese!`,
                 link: 'p3'
+            }, {
+                text: `Search for any thing that looks like a cat`,
+                link: 'findCatEnd'
             }, {
                 text: `Decide it's not worth the risk and fly back to the forest.`,
                 link: 'homeEnd'
@@ -204,6 +185,18 @@ var storyData = {
         text: `You open your beak to sing a lovely song, and your cheese comes
                 tumbling out. Mr. Fox quickly snaps the cheese out of the air
                 as it falls and gobbles it up!
+                <br><br>
+                The End`,
+        choices: [
+            {
+                text: `Start over?`,
+                link: 'p1'
+            }
+        ]
+    },
+    findCatEnd : {
+        text: `After a quick circle around the picinic table you spy the cat watching you!
+                You decide that the cheese can wait till later and fly back home.
                 <br><br>
                 The End`,
         choices: [
